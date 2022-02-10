@@ -1,0 +1,7 @@
+train: /content/sponges/images/train  # train images  
+val: /content/sponges/images/val  # val images 
+
+# number of classes
+nc: 1
+# name of classes  
+names: ['sea_sponges']
