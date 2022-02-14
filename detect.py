@@ -5,8 +5,8 @@ from time import time
 import yaml
 import seaborn as sn
 
-model_name= 'C:\\Users\\lav singh\\workplace\\sea_sponges detection model\\best.pt'
-videoPath= 'C:\\Users\\lav singh\\workplace\\sea_sponges detection model\\sea_sponges.mp4'
+model_name= 'C:\\Users\\lav singh\\workplace\\Deep_Sea_Sponges_Detection_Model\\best.pt'
+videoPath= 'C:\\Users\\lav singh\\workplace\\Deep_Sea_Sponges_Detection_Model\\sea_sponges.mp4'
 
 class sea_spongesDetection:
     """
@@ -76,10 +76,10 @@ class sea_spongesDetection:
         x_shape, y_shape = frame.shape[1], frame.shape[0]
         for i in range(n):
             row = cord[i]
-            if row[4] >= 0.3:
+            if row[4] >= 0.5:
                 x1, y1, x2, y2 = int(row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape)
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(frame, self.class_to_label(labels[i]), (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 1)
+                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 196, 255), 2)
+                cv2.putText(frame, f'{self.class_to_label(labels[i])}:{int(row[4]*100)}%', (x1, y1-8), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
 
         return frame
 
@@ -112,5 +112,5 @@ class sea_spongesDetection:
       
         cap.release()
 # Create a new object and execute.
-detector = sea_spongesDetection(capture_index=videoPath, model_name= 'C:\\Users\\lav singh\\workplace\\sea_sponges detection model\\best.pt')
+detector = sea_spongesDetection(capture_index=videoPath, model_name= 'C:\\Users\\lav singh\\workplace\\Deep_Sea_Sponges_Detection_Model\\best.pt')
 detector()
